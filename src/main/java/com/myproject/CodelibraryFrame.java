@@ -3,8 +3,7 @@ package com.myproject;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class CodelibraryFrame extends JFrame {
     private JPanel mainPanel;
@@ -14,18 +13,23 @@ public class CodelibraryFrame extends JFrame {
     private JButton searchButton;
     private JList list1;
 
+    public void refresh(){
+        DefaultListModel dm = new DBClass().searchdata(sadFormattedTextField.getText());
+        list1.clearSelection();
+        list1.setModel(dm);
+    }
+
     public CodelibraryFrame(String title) {
         super(title);
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
+        refresh();
+
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DefaultListModel dm = new DBClass().searchdata(sadFormattedTextField.getText());
-                list1.clearSelection();
-                list1.setModel(dm);
+                refresh();
             }
         });
         list1.addListSelectionListener(new ListSelectionListener() {
@@ -41,7 +45,15 @@ public class CodelibraryFrame extends JFrame {
                 textArea1.setText(new DBClass().getText(title));
             }
         });
-    }
+    mainPanel.addComponentListener(new ComponentAdapter() { } );
+        sadFormattedTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                refresh();
+            }
+        });
+    sadFormattedTextField.addComponentListener(new ComponentAdapter() { } );}
 
     public static void main(String[] args) {
         JFrame frame = new CodelibraryFrame("Frame");
