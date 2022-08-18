@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class DBClass {
@@ -14,14 +15,56 @@ public class DBClass {
     String username = "root";
     String password = "";
 
-    public DefaultListModel searchdata(String search){
+    public void updateTitle(String content, String pk) {
         DefaultListModel dm = new DefaultListModel();
+        String sql = "UPDATE codelibary SET title = '" + content + "' WHERE PK = '" + pk + "'";
+        try {
+            // load and register JDBC driver for MySQ
+            Connection con = DriverManager.getConnection(conString, username, password);
+            Statement s = con.prepareStatement(sql);
+            s.executeUpdate(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteData(String pk) {
+        DefaultListModel dm = new DefaultListModel();
+        String sql = "DELETE FROM codelibary WHERE PK = '"+ pk +"'";
+        try {
+            // load and register JDBC driver for MySQ
+            Connection con = DriverManager.getConnection(conString, username, password);
+            Statement s = con.prepareStatement(sql);
+            s.executeUpdate(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateData(String content, String pk) {
+        DefaultListModel dm = new DefaultListModel();
+        String sql = "UPDATE codelibary SET text = '" + content + "' WHERE PK = '" + pk + "'";
+        try {
+            // load and register JDBC driver for MySQ
+            Connection con = DriverManager.getConnection(conString, username, password);
+            Statement s = con.prepareStatement(sql);
+            s.executeUpdate(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+        public ListObject searchdata(String search){
+            DefaultListModel dm = new DefaultListModel();
+            DefaultListModel dm1 = new DefaultListModel();
+
+        ArrayList<ListObject> dms= new ArrayList<ListObject>();
 
         String sql = null;
         if(search.equals("")){
-            sql = "SELECT title from codelibary";
+            sql = "SELECT PK, title from codelibary";
         } else {
-            sql = "SELECT title from codelibary WHERE title LIKE '%" +search+ "%' OR text LIKE '%" +search+ "%'";
+            sql = "SELECT PK, title from codelibary WHERE title LIKE '%" +search+ "%' OR text LIKE '%" +search+ "%'";
         }
 
         try{
@@ -33,18 +76,21 @@ public class DBClass {
             try {
                 rs = s.executeQuery(sql);
                 while(rs.next()){
-                    String name = rs.getString(1);
-                    dm.addElement(name);
-                }
-            } catch(Exception ex) {
-                return dm;
-            }
-            return dm;
 
+                    String name = rs.getString("title");
+                    String pk =  rs.getString("PK");
+                    dm.addElement(pk);
+                    dm1.addElement(name);
+                }
+                ListObject row = new ListObject(dm, dm1);
+                return row;
+            } catch(Exception ex) {
+                System.out.println(ex);
+                return null;
+            }
         }catch (Exception ex){
             ex.printStackTrace();
         }
-
         return null;
     }
 

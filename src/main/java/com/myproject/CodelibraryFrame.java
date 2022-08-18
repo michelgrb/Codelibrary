@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class CodelibraryFrame extends JFrame {
     private JPanel mainPanel;
@@ -12,11 +13,29 @@ public class CodelibraryFrame extends JFrame {
     private JTextPane textPane1;
     private JButton searchButton;
     private JList list1;
+    private JList list2;
+    private JTextPane textPane2;
 
     public void refresh(){
-        DefaultListModel dm = new DBClass().searchdata(sadFormattedTextField.getText());
+        ListObject dm = new DBClass().searchdata(sadFormattedTextField.getText());
         list1.clearSelection();
-        list1.setModel(dm);
+        list1.setModel(dm.gettitle());
+
+        list2.clearSelection();
+        list2.setModel(dm.getPK());
+
+    }
+
+    public void delete(String pk){
+        new DBClass().deleteData(pk);
+    }
+
+    public void updateTitle(){
+        new DBClass().updateTitle(textPane1.getText(), textPane2.getText());
+    }
+
+    public void updateContent(){
+        new DBClass().updateData(textArea1.getText(), textPane2.getText());
     }
 
     public CodelibraryFrame(String title) {
@@ -25,6 +44,7 @@ public class CodelibraryFrame extends JFrame {
         this.setContentPane(mainPanel);
         this.pack();
         refresh();
+
 
         searchButton.addActionListener(new ActionListener() {
             @Override
@@ -43,6 +63,7 @@ public class CodelibraryFrame extends JFrame {
                 }
                 textPane1.setText(title);
                 textArea1.setText(new DBClass().getText(title));
+                textPane2.setText(list2.getModel().getElementAt(list1.getSelectedIndex()).toString());
             }
         });
     mainPanel.addComponentListener(new ComponentAdapter() { } );
@@ -53,7 +74,46 @@ public class CodelibraryFrame extends JFrame {
                 refresh();
             }
         });
-    sadFormattedTextField.addComponentListener(new ComponentAdapter() { } );}
+    sadFormattedTextField.addComponentListener(new ComponentAdapter() { } );
+        textPane1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                updateTitle();
+            }
+        });
+        textArea1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                updateContent();
+            }
+        });
+        textPane1.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                super.focusLost(e);
+                refresh();
+            }
+        });
+        textArea1.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                super.focusLost(e);
+                refresh();
+            }
+        });
+
+        list1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if(e.getKeyChar() == '\u0008' || e.getKeyChar() == '\u007F'){
+                    delete(textPane2.getText());
+                }
+            }
+        });
+    }
 
     public static void main(String[] args) {
         JFrame frame = new CodelibraryFrame("Frame");
