@@ -31,11 +31,11 @@ public class CodelibraryFrame extends JFrame {
     }
 
     public void updateTitle(){
-        new DBClass().updateTitle(textPane1.getText(), textPane2.getText());
+        new DBClass().updateTitle(textPane1.getText().toString(), textPane2.getText());
     }
 
     public void updateContent(){
-        new DBClass().updateData(textArea1.getText(), textPane2.getText());
+        new DBClass().updateData(textArea1.getText().toString(), textPane2.getText());
     }
 
     public CodelibraryFrame(String title) {
@@ -45,13 +45,6 @@ public class CodelibraryFrame extends JFrame {
         this.pack();
         refresh();
 
-
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                refresh();
-            }
-        });
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
