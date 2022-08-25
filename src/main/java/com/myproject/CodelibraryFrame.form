@@ -1,36 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.myproject.CodelibraryFrame">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="4" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="1051" height="618"/>
+      <xy x="20" y="20" width="1051" height="434"/>
     </constraints>
     <properties>
-      <background color="-16706263"/>
-      <foreground color="-4996915"/>
+      <background color="-14278303"/>
+      <enabled value="true"/>
+      <foreground color="-282815"/>
     </properties>
     <border type="none">
       <font/>
       <title-color color="-5854003"/>
     </border>
     <children>
-      <component id="89c42" class="javax.swing.JFormattedTextField" binding="sadFormattedTextField" default-binding="true">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
-            <minimum-size width="150" height="50"/>
-            <preferred-size width="300" height="35"/>
-            <maximum-size width="10000" height="50"/>
-          </grid>
-        </constraints>
-        <properties>
-          <columns value="1"/>
-          <font size="24"/>
-          <text value=""/>
-        </properties>
-      </component>
       <component id="7c89" class="javax.swing.JLabel">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font size="26"/>
@@ -38,9 +25,9 @@
           <text value="Search:"/>
         </properties>
       </component>
-      <component id="e16d1" class="javax.swing.JList" binding="list2" default-binding="true">
+      <component id="e16d1" class="javax.swing.JList" binding="listDataSetsPKs" default-binding="true">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false">
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false">
             <preferred-size width="158" height="50"/>
           </grid>
         </constraints>
@@ -55,20 +42,22 @@
           <html.disable class="java.lang.Boolean" value="false"/>
         </clientProperties>
       </component>
-      <component id="dd83a" class="javax.swing.JTextPane" binding="textPane1" default-binding="true">
+      <component id="dd83a" class="javax.swing.JTextPane" binding="dataTitle">
         <constraints>
-          <grid row="0" column="3" row-span="2" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="0" column="6" row-span="2" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="20"/>
           </grid>
         </constraints>
         <properties>
-          <background color="-16706263"/>
+          <background color="-14278303"/>
           <font size="28"/>
-          <foreground color="-7790979"/>
+          <foreground color="-327681"/>
+          <selectedTextColor color="-327681"/>
+          <selectionColor color="-1097929"/>
           <text value=""/>
         </properties>
       </component>
-      <component id="d113e" class="javax.swing.JTextPane" binding="textPane2" default-binding="true">
+      <component id="d113e" class="javax.swing.JTextPane" binding="primaryKeyForDataset" default-binding="true">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="9" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -78,42 +67,88 @@
           <visible value="false"/>
         </properties>
       </component>
-      <component id="952b6" class="javax.swing.JList" binding="list1" default-binding="true">
+      <component id="89c42" class="javax.swing.JFormattedTextField" binding="searchField" default-binding="true">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-16637122"/>
-          <font size="24"/>
-          <foreground color="-2099713"/>
-          <model/>
-          <selectionForeground color="-16637122"/>
-        </properties>
-      </component>
-      <component id="318da" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
-        <constraints>
-          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="7" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
+          <grid row="1" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="150" height="50"/>
+            <preferred-size width="300" height="35"/>
+            <maximum-size width="10000" height="50"/>
           </grid>
         </constraints>
         <properties>
-          <background color="-16637122"/>
-          <caretColor color="-7790979"/>
-          <disabledTextColor color="-7790979"/>
+          <background color="-14278303"/>
+          <columns value="1"/>
+          <disabledTextColor color="-327681"/>
           <font size="24"/>
-          <foreground color="-7790979"/>
-          <selectionColor color="-16637122"/>
+          <foreground color="-327681"/>
           <text value=""/>
         </properties>
       </component>
-      <scrollpane id="67c36">
+      <scrollpane id="ec2dc">
         <constraints>
-          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="6" row-span="2" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-14278303"/>
+          <doubleBuffered value="true"/>
+          <foreground color="-14278303"/>
+          <visible value="true"/>
+        </properties>
         <border type="none"/>
-        <children/>
+        <children>
+          <component id="318da" class="javax.swing.JTextArea" binding="dataContent">
+            <constraints/>
+            <properties>
+              <background color="-14278303"/>
+              <caretColor color="-7790979"/>
+              <disabledTextColor color="-7790979"/>
+              <font size="24"/>
+              <foreground color="-327681"/>
+              <selectedTextColor color="-327681"/>
+              <selectionColor color="-1097929"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
       </scrollpane>
+      <scrollpane id="d2999">
+        <constraints>
+          <grid row="2" column="3" row-span="2" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="true"/>
+          <background color="-14278303"/>
+          <foreground color="-14278303"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="952b6" class="javax.swing.JList" binding="listDataSetsTitles" default-binding="true">
+            <constraints/>
+            <properties>
+              <background color="-14278303"/>
+              <doubleBuffered value="false"/>
+              <font size="24"/>
+              <foreground color="-327681"/>
+              <model/>
+              <selectionBackground color="-1097929"/>
+              <selectionForeground color="-327681"/>
+              <valueIsAdjusting value="true"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="e6381" class="javax.swing.JButton" binding="addNewDataset" default-binding="true">
+        <constraints>
+          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-14278303"/>
+          <focusable value="false"/>
+          <font size="24"/>
+          <foreground color="-1097929"/>
+          <text value="New"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

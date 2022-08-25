@@ -11,9 +11,22 @@ import java.util.Collections;
 
 public class DBClass {
     String conString = "jdbc:mysql://localhost:3306/codelibary";
-
     String username = "root";
     String password = "";
+
+    public void addNewField(){
+        DefaultListModel dm = new DefaultListModel();
+        String sql = "INSERT INTO codelibary (title, text) VALUES ('TITLE', 'TEXT')";
+        try {
+            // load and register JDBC driver for MySQ
+            Connection con = DriverManager.getConnection(conString, username, password);
+            Statement s = con.prepareStatement(sql);
+            s.executeUpdate(sql);
+            con.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void updateTitle(String content, String pk) {
         DefaultListModel dm = new DefaultListModel();
@@ -23,6 +36,7 @@ public class DBClass {
             Connection con = DriverManager.getConnection(conString, username, password);
             Statement s = con.prepareStatement(sql);
             s.executeUpdate(sql);
+            con.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -36,6 +50,7 @@ public class DBClass {
             Connection con = DriverManager.getConnection(conString, username, password);
             Statement s = con.prepareStatement(sql);
             s.executeUpdate(sql);
+            con.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -49,6 +64,7 @@ public class DBClass {
             Connection con = DriverManager.getConnection(conString, username, password);
             Statement s = con.prepareStatement(sql);
             s.executeUpdate(sql);
+            con.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -83,11 +99,14 @@ public class DBClass {
                     dm1.addElement(name);
                 }
                 ListObject row = new ListObject(dm, dm1);
+                con.close();
                 return row;
             } catch(Exception ex) {
                 System.out.println(ex);
+                con.close();
                 return null;
             }
+
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -106,7 +125,7 @@ public class DBClass {
             if(rs.next()) {
                 text = (String) rs.getString(1);
             }
-
+            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
