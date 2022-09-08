@@ -105,7 +105,7 @@ public class CodelibraryFrame extends JFrame {
         listDataSetsTitles.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
+                super.keyPressed(e);
                 if(e.getKeyChar() == '\u0008' || e.getKeyChar() == '\u007F'){
                     delete(primaryKeyForDataset.getText());
                     refresh();
