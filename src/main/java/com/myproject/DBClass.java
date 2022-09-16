@@ -113,8 +113,8 @@ public class DBClass {
         return null;
     }
 
-    public String getText(String title){
-        String sql = "SELECT text from codelibary WHERE title = '" + title + "'";
+    public String getText(String pk){
+        String sql = "SELECT text from codelibary WHERE PK = '" + pk + "'";
         String text = "";
 
         try {

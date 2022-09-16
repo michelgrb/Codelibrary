@@ -54,13 +54,15 @@ public class CodelibraryFrame extends JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 String title = "";
+                String pk = "";
                 try {
                     title = listDataSetsTitles.getSelectedValue().toString();
+                    pk = primaryKeyForDataset.getText();
                 } catch (Exception ex1) {
                     return;
                 }
                 dataTitle.setText(title);
-                dataContent.setText(new DBClass().getText(title));
+                dataContent.setText(new DBClass().getText(pk));
                 primaryKeyForDataset.setText(listDataSetsPKs.getModel().getElementAt(listDataSetsTitles.getSelectedIndex()).toString());
             }
         });

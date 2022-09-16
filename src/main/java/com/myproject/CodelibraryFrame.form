@@ -6,7 +6,7 @@
       <xy x="20" y="20" width="1051" height="434"/>
     </constraints>
     <properties>
-      <background color="-14278303"/>
+      <background color="-16764855"/>
       <enabled value="true"/>
       <foreground color="-282815"/>
     </properties>
@@ -20,8 +20,9 @@
           <grid row="0" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font size="26"/>
-          <foreground color="-2099713"/>
+          <enabled value="false"/>
+          <font name="MS Outlook" size="26"/>
+          <foreground color="-1383753"/>
           <text value="Search:"/>
         </properties>
       </component>
@@ -49,11 +50,11 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-14278303"/>
+          <background color="-16764855"/>
           <font size="28"/>
-          <foreground color="-327681"/>
-          <selectedTextColor color="-327681"/>
-          <selectionColor color="-1097929"/>
+          <foreground color="-213175"/>
+          <selectedTextColor color="-2742232"/>
+          <selectionColor color="-16764855"/>
           <text value=""/>
         </properties>
       </component>
@@ -76,11 +77,11 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-14278303"/>
+          <background color="-16764855"/>
           <columns value="1"/>
-          <disabledTextColor color="-327681"/>
+          <disabledTextColor color="-557312"/>
           <font size="24"/>
-          <foreground color="-327681"/>
+          <foreground color="-1383753"/>
           <text value=""/>
         </properties>
       </component>
@@ -99,13 +100,13 @@
           <component id="318da" class="javax.swing.JTextArea" binding="dataContent">
             <constraints/>
             <properties>
-              <background color="-14278303"/>
-              <caretColor color="-7790979"/>
-              <disabledTextColor color="-7790979"/>
+              <background color="-16764855"/>
+              <caretColor color="-2742232"/>
+              <disabledTextColor color="-2742232"/>
               <font size="24"/>
-              <foreground color="-327681"/>
-              <selectedTextColor color="-327681"/>
-              <selectionColor color="-1097929"/>
+              <foreground color="-1383753"/>
+              <selectedTextColor color="-2742232"/>
+              <selectionColor color="-16764855"/>
               <text value=""/>
             </properties>
           </component>
@@ -125,13 +126,13 @@
           <component id="952b6" class="javax.swing.JList" binding="listDataSetsTitles" default-binding="true">
             <constraints/>
             <properties>
-              <background color="-14278303"/>
+              <background color="-16764855"/>
               <doubleBuffered value="false"/>
-              <font size="24"/>
-              <foreground color="-327681"/>
+              <font name="MS Outlook" size="24"/>
+              <foreground color="-1383753"/>
               <model/>
-              <selectionBackground color="-1097929"/>
-              <selectionForeground color="-327681"/>
+              <selectionBackground color="-16764855"/>
+              <selectionForeground color="-2742232"/>
               <valueIsAdjusting value="true"/>
             </properties>
           </component>
@@ -142,10 +143,10 @@
           <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-14278303"/>
+          <background color="-2742232"/>
           <focusable value="false"/>
           <font size="24"/>
-          <foreground color="-1097929"/>
+          <foreground color="-1383753"/>
           <text value="New"/>
         </properties>
       </component>
