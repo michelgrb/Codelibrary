@@ -6,22 +6,81 @@ import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class DBClass {
     String conString = "jdbc:mysql://localhost:3306/codelibary";
-
     String username = "root";
     String password = "";
 
-    public DefaultListModel searchdata(String search){
+    public void addNewField(){
         DefaultListModel dm = new DefaultListModel();
+        String sql = "INSERT INTO codelibary (title, text) VALUES ('TITLE', 'TEXT')";
+        try {
+            // load and register JDBC driver for MySQ
+            Connection con = DriverManager.getConnection(conString, username, password);
+            Statement s = con.prepareStatement(sql);
+            s.executeUpdate(sql);
+            con.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateTitle(String content, String pk) {
+        DefaultListModel dm = new DefaultListModel();
+        String sql = "UPDATE codelibary SET title = '" + content + "' WHERE PK = '" + pk + "'";
+        try {
+            // load and register JDBC driver for MySQ
+            Connection con = DriverManager.getConnection(conString, username, password);
+            Statement s = con.prepareStatement(sql);
+            s.executeUpdate(sql);
+            con.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteData(String pk) {
+        DefaultListModel dm = new DefaultListModel();
+        String sql = "DELETE FROM codelibary WHERE PK = '"+ pk +"'";
+        try {
+            // load and register JDBC driver for MySQ
+            Connection con = DriverManager.getConnection(conString, username, password);
+            Statement s = con.prepareStatement(sql);
+            s.executeUpdate(sql);
+            con.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateData(String content, String pk) {
+        DefaultListModel dm = new DefaultListModel();
+        String sql = "UPDATE codelibary SET text = '" + content + "' WHERE PK = '" + pk + "'";
+        try {
+            // load and register JDBC driver for MySQ
+            Connection con = DriverManager.getConnection(conString, username, password);
+            Statement s = con.prepareStatement(sql);
+            s.executeUpdate(sql);
+            con.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ListObject searchdata(String search){
+        DefaultListModel dm = new DefaultListModel();
+        DefaultListModel dm1 = new DefaultListModel();
+
+        ArrayList<ListObject> dms= new ArrayList<ListObject>();
 
         String sql = null;
         if(search.equals("")){
-            sql = "SELECT title from codelibary";
+            sql = "SELECT PK, title from codelibary";
         } else {
-            sql = "SELECT title from codelibary WHERE title LIKE '%" +search+ "%' OR text LIKE '%" +search+ "%'";
+            sql = "SELECT PK, title from codelibary WHERE title LIKE '%" +search+ "%' OR text LIKE '%" +search+ "%'";
         }
 
         try{
@@ -33,23 +92,29 @@ public class DBClass {
             try {
                 rs = s.executeQuery(sql);
                 while(rs.next()){
-                    String name = rs.getString(1);
-                    dm.addElement(name);
+
+                    String name = rs.getString("title");
+                    String pk =  rs.getString("PK");
+                    dm.addElement(pk);
+                    dm1.addElement(name);
                 }
+                ListObject row = new ListObject(dm, dm1);
+                con.close();
+                return row;
             } catch(Exception ex) {
-                return dm;
+                System.out.println(ex);
+                con.close();
+                return null;
             }
-            return dm;
 
         }catch (Exception ex){
             ex.printStackTrace();
         }
-
         return null;
     }
 
-    public String getText(String title){
-        String sql = "SELECT text from codelibary WHERE title = '" + title + "'";
+    public String getText(String pk){
+        String sql = "SELECT text from codelibary WHERE PK = '" + pk + "'";
         String text = "";
 
         try {
@@ -60,7 +125,7 @@ public class DBClass {
             if(rs.next()) {
                 text = (String) rs.getString(1);
             }
-
+            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
