@@ -10,13 +10,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class DBClass {
-    String conString = "jdbc:mysql://localhost:3306/codelibary";
-    String username = "root";
+    String conString = "jdbc:mysql://codelibrary.cc1epdw51gph.eu-central-1.rds.amazonaws.com/CodeLibrary";
+    String username = "admin";
     String password = "";
+    //not the real Password
 
     public void addNewField(){
         DefaultListModel dm = new DefaultListModel();
-        String sql = "INSERT INTO codelibary (title, text) VALUES ('TITLE', 'TEXT')";
+
+        String sql = "INSERT INTO UserCode (CodeTitle, Code) VALUES ('TITLE', 'TEXT')";
+
         try {
             // load and register JDBC driver for MySQ
             Connection con = DriverManager.getConnection(conString, username, password);
@@ -30,7 +33,7 @@ public class DBClass {
 
     public void updateTitle(String content, String pk) {
         DefaultListModel dm = new DefaultListModel();
-        String sql = "UPDATE codelibary SET title = '" + content + "' WHERE PK = '" + pk + "'";
+        String sql = "UPDATE UserCode SET CodeTitle = '" + content + "' WHERE CodeId = '" + pk + "'";
         try {
             // load and register JDBC driver for MySQ
             Connection con = DriverManager.getConnection(conString, username, password);
@@ -44,7 +47,8 @@ public class DBClass {
 
     public void deleteData(String pk) {
         DefaultListModel dm = new DefaultListModel();
-        String sql = "DELETE FROM codelibary WHERE PK = '"+ pk +"'";
+        String sql = "DELETE FROM UserCode WHERE CodeId = '"+ pk +"'";
+
         try {
             // load and register JDBC driver for MySQ
             Connection con = DriverManager.getConnection(conString, username, password);
@@ -58,7 +62,8 @@ public class DBClass {
 
     public void updateData(String content, String pk) {
         DefaultListModel dm = new DefaultListModel();
-        String sql = "UPDATE codelibary SET text = '" + content + "' WHERE PK = '" + pk + "'";
+        String sql = "UPDATE UserCode SET Code = '" + content + "' WHERE CodeId = '" + pk + "'";
+
         try {
             // load and register JDBC driver for MySQ
             Connection con = DriverManager.getConnection(conString, username, password);
@@ -78,9 +83,10 @@ public class DBClass {
 
         String sql = null;
         if(search.equals("")){
-            sql = "SELECT PK, title from codelibary";
+            sql = "SELECT CodeId, CodeTitle from UserCode";
         } else {
-            sql = "SELECT PK, title from codelibary WHERE title LIKE '%" +search+ "%' OR text LIKE '%" +search+ "%'";
+            sql = "SELECT CodeId, CodeTitle from UserCode WHERE CodeTitle LIKE '%" +search+ "%' OR Code LIKE '%" +search+ "%'";
+
         }
 
         try{
@@ -93,8 +99,9 @@ public class DBClass {
                 rs = s.executeQuery(sql);
                 while(rs.next()){
 
-                    String name = rs.getString("title");
-                    String pk =  rs.getString("PK");
+                    String name = rs.getString("CodeTitle");
+                    String pk =  rs.getString("CodeId");
+
                     dm.addElement(pk);
                     dm1.addElement(name);
                 }
@@ -114,7 +121,8 @@ public class DBClass {
     }
 
     public String getText(String pk){
-        String sql = "SELECT text from codelibary WHERE PK = '" + pk + "'";
+        String sql = "SELECT Code from UserCode WHERE CodeId = '" + pk + "'";
+
         String text = "";
 
         try {
