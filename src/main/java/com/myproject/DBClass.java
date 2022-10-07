@@ -17,7 +17,9 @@ public class DBClass {
 
     public void addNewField(){
         DefaultListModel dm = new DefaultListModel();
+
         String sql = "INSERT INTO UserCode (CodeTitle, Code) VALUES ('TITLE', 'TEXT')";
+
         try {
             // load and register JDBC driver for MySQ
             Connection con = DriverManager.getConnection(conString, username, password);
@@ -46,6 +48,7 @@ public class DBClass {
     public void deleteData(String pk) {
         DefaultListModel dm = new DefaultListModel();
         String sql = "DELETE FROM UserCode WHERE CodeId = '"+ pk +"'";
+
         try {
             // load and register JDBC driver for MySQ
             Connection con = DriverManager.getConnection(conString, username, password);
@@ -60,6 +63,7 @@ public class DBClass {
     public void updateData(String content, String pk) {
         DefaultListModel dm = new DefaultListModel();
         String sql = "UPDATE UserCode SET Code = '" + content + "' WHERE CodeId = '" + pk + "'";
+
         try {
             // load and register JDBC driver for MySQ
             Connection con = DriverManager.getConnection(conString, username, password);
@@ -82,6 +86,7 @@ public class DBClass {
             sql = "SELECT CodeId, CodeTitle from UserCode";
         } else {
             sql = "SELECT CodeId, CodeTitle from UserCode WHERE CodeTitle LIKE '%" +search+ "%' OR Code LIKE '%" +search+ "%'";
+
         }
 
         try{
@@ -96,6 +101,7 @@ public class DBClass {
 
                     String name = rs.getString("CodeTitle");
                     String pk =  rs.getString("CodeId");
+
                     dm.addElement(pk);
                     dm1.addElement(name);
                 }
@@ -116,6 +122,7 @@ public class DBClass {
 
     public String getText(String pk){
         String sql = "SELECT Code from UserCode WHERE CodeId = '" + pk + "'";
+
         String text = "";
 
         try {
