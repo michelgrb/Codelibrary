@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class DBClass {
-    String conString = "jdbc:mysql://localhost:3306/codelibary";
+    String conString = "jdbc:mysql://localhost:3306/codelibrary";
     String username = "root";
     String password = "";
 
     public void addNewField(){
         DefaultListModel dm = new DefaultListModel();
-        String sql = "INSERT INTO codelibary (title, text) VALUES ('TITLE', 'TEXT')";
+        String sql = "INSERT INTO codedata (title, text) VALUES ('TITLE', 'TEXT')";
         try {
             // load and register JDBC driver for MySQ
             Connection con = DriverManager.getConnection(conString, username, password);
@@ -30,7 +30,7 @@ public class DBClass {
 
     public void updateTitle(String content, String pk) {
         DefaultListModel dm = new DefaultListModel();
-        String sql = "UPDATE codelibary SET title = '" + content + "' WHERE PK = '" + pk + "'";
+        String sql = "UPDATE codedata SET title = '" + content + "' WHERE PK = '" + pk + "'";
         try {
             // load and register JDBC driver for MySQ
             Connection con = DriverManager.getConnection(conString, username, password);
@@ -44,7 +44,7 @@ public class DBClass {
 
     public void deleteData(String pk) {
         DefaultListModel dm = new DefaultListModel();
-        String sql = "DELETE FROM codelibary WHERE PK = '"+ pk +"'";
+        String sql = "DELETE FROM codedata WHERE PK = '"+ pk +"'";
         try {
             // load and register JDBC driver for MySQ
             Connection con = DriverManager.getConnection(conString, username, password);
@@ -58,7 +58,7 @@ public class DBClass {
 
     public void updateData(String content, String pk) {
         DefaultListModel dm = new DefaultListModel();
-        String sql = "UPDATE codelibary SET text = '" + content + "' WHERE PK = '" + pk + "'";
+        String sql = "UPDATE codedata SET text = '" + content + "' WHERE PK = '" + pk + "'";
         try {
             // load and register JDBC driver for MySQ
             Connection con = DriverManager.getConnection(conString, username, password);
@@ -70,17 +70,17 @@ public class DBClass {
         }
     }
 
-        public ListObject searchdata(String search){
-            DefaultListModel dm = new DefaultListModel();
-            DefaultListModel dm1 = new DefaultListModel();
+    public ListObject searchdata(String search){
+        DefaultListModel dm = new DefaultListModel();
+        DefaultListModel dm1 = new DefaultListModel();
 
         ArrayList<ListObject> dms= new ArrayList<ListObject>();
 
         String sql = null;
         if(search.equals("")){
-            sql = "SELECT PK, title from codelibary";
+            sql = "SELECT PK, title from codedata";
         } else {
-            sql = "SELECT PK, title from codelibary WHERE title LIKE '%" +search+ "%' OR text LIKE '%" +search+ "%'";
+            sql = "SELECT PK, title from codedata WHERE title LIKE '%" +search+ "%' OR text LIKE '%" +search+ "%'";
         }
 
         try{
@@ -114,7 +114,7 @@ public class DBClass {
     }
 
     public String getText(String pk){
-        String sql = "SELECT text from codelibary WHERE PK = '" + pk + "'";
+        String sql = "SELECT text from codedata WHERE PK = '" + pk + "'";
         String text = "";
 
         try {
