@@ -121,6 +121,15 @@ public class CodelibraryFrame extends JFrame {
                 refresh();
             }
         });
+        dataContent.addFocusListener(new FocusAdapter() {
+        });
+        dataTitle.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                refresh();
+                super.focusLost(e);
+            }
+        });
     }
 
     public static void main(String[] args) {
