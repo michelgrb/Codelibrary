@@ -12,7 +12,7 @@ import java.util.Collections;
 public class DBClass {
     String conString = "jdbc:mysql://codelibrary.cc1epdw51gph.eu-central-1.rds.amazonaws.com/CodeLibrary";
     String username = "admin";
-    String password = "";
+    String password = "12345678";
     //not the real Password
 
     public void addNewField(){
