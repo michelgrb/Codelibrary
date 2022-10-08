@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class DBClass {
-    String conString = "jdbc:mysql://codelibrary.cc1epdw51gph.eu-central-1.rds.amazonaws.com/CodeLibrary";
-    String username = "admin";
-    String password = "12345678";
+    DBPrivate DBData = new DBPrivate();
+    String conString = DBData.getcon();
+    String username = DBData.getun();
+    String password = DBData.getpw();
     //not the real Password
 
     public void addNewField(){
