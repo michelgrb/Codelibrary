@@ -1,5 +1,4 @@
 # Code-Library
-#### Video Demo: https://youtu.be/M1j2wCUSHHg <URL HERE>
 #### Description:
 
 The project includes a virtual library where you can store snippets of programmer's code.
